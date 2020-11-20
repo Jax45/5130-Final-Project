@@ -9,17 +9,7 @@
 
   <title>Pipe Cutter</title>
 
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="./js/vendor/jquery-slim.min.js"></script>
-<!--  <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>-->
-  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
-  <script src="./js/vendor/popper.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
-
-  <script src="js/main.js"></script>
   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
   <link href="./css/main.css" rel="stylesheet">
   <link href="./css/normalize.css" rel="stylesheet">
@@ -58,26 +48,30 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-sm">
+    <div class="col-sm table-responsive">
       <h1 class="h2">Dashboard</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
-          <button type="button">See Solution?</button>
-          Current Profit: $0
+          <button onclick="toggleSolution()" class="btn btn-secondary" type="button">See Solution?</button>
         </div>
       </div>
-      <table id="priceTable" class="table table-striped table-bordered table-sm" cellspacing="0"
-             width="100%">
-        <thead>
-        <tr>
-          <th>Length</th>
-          <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php include './php/generateSolution.php' ?>
-        </tbody>
-      </table>
+      <div id="currentSolutionContainer">
+        <table id="currentSolutionTable" class="table table-striped table-bordered table-sm" cellspacing="0"
+               width="100%">
+          <thead>
+          <tr>
+            <th>Undo</th>
+            <th>Length</th>
+            <th>Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <div>Current Solution Profit: $<span id="currentSolutionProfit" value="0.00">0.00</span></div>
+      </div>
+      <?php include './php/generateSolution.php' ?>
+
     </div>
     <div class="col-sm col-lg-4 table-responsive">
       <h2>Current Market</h2>
@@ -101,6 +95,17 @@
 </div>
 
 
+<!-- Bootstrap core JavaScript
+  ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./js/vendor/jquery-slim.min.js"></script>
+<!--  <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>-->
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
+<script src="./js/vendor/popper.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+
+<script src="js/main.js"></script>
 </body>
+
 </html>
