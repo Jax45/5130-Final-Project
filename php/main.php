@@ -1,4 +1,9 @@
 <?php
+//    Jackson Hoenig
+//    Final Project 5130
+//    Rod Cutting Problem Solution Game
+//    Pipe Cutter
+//    11/30/2020
 if (isset($_GET['difficulty'])) {
   $difficulty = $_GET['difficulty'];
 } else {
@@ -9,15 +14,15 @@ if (isset($_GET['difficulty'])) {
 $min = 0.01;
 $max = 2.00;
 $value = 0;
-$maxLength = 11;
+$maxLength = 10;
 $marketArray = array();
 $cuts = array();
 $valueArray = array();
 if($difficulty == 'Medium'){
-  $maxLength = 26;
+  $maxLength = 25;
 }
 elseif ($difficulty == 'Hard') {
-  $maxLength = 51;
+  $maxLength = 50;
 }
 for ($i = 0; $i < $maxLength; $i++) {
   $value += mt_rand ($min*100, $max*100) / 100;
@@ -27,11 +32,10 @@ for ($i = 0; $i < $maxLength; $i++) {
 //$marketArray = array(1=>1,2=>5.01,3=>8,4=>9,5=>10,6=>17,7=>17,8=>20);
 //print_r($marketArray);
 
-function rodCutDP( $pricing, $length, $maxLength){
+function rodCutDP( $pricing, $length){
   $valueArray = array();
-//  for($x = 0; $x < $maxLength; $x++){
-    $valueArray[0] = 0;
-//  }
+  $valueArray[0] = 0;
+
   $i=1;
   $j=1;
   //an array of the bestCuts matching the ValueArray.
@@ -52,6 +56,6 @@ function rodCutDP( $pricing, $length, $maxLength){
   return array($valueArray, $cuts);
 
 }
-list($valueArray, $cuts) = rodCutDP($marketArray, count($marketArray), $maxLength);
+list($valueArray, $cuts) = rodCutDP($marketArray, count($marketArray));
 
 ?>

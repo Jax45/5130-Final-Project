@@ -1,8 +1,15 @@
 <!doctype html>
 <html lang="en">
+<!--
+    Jackson Hoenig
+    Final Project 5130
+    Rod Cutting Problem Solution Game
+    Pipe Cutter
+    11/30/2020
+-->
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0>
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="./img/logo2.png">
@@ -15,17 +22,24 @@
   <link href="./css/normalize.css" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link href="./css/bootstrap.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!-- Custom styles for this template -->
   <link href="./css/dashboard.css" rel="stylesheet">
+
 </head>
 
 <body">
+<!--Celebrate confetti-->
+<script src="https://cdn.jsdelivr.net/gh/mathusummut/confetti.js/confetti.min.js"></script>
+
 <!-- PHP includes -->
 <?php include './php/main.php';?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="./img/logo2.png" class="nav-logo d-inline-block align-top" alt="">Pipe Cutter</a>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="#">Pipe Cutter</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -48,32 +62,48 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-sm table-responsive">
-      <h1 class="h2">Dashboard</h1>
-      <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-          <button onclick="toggleSolution()" class="btn btn-secondary" type="button">See Solution?</button>
-        </div>
-      </div>
-      <div id="currentSolutionContainer">
-        <table id="currentSolutionTable" class="table table-striped table-bordered table-sm" cellspacing="0"
-               width="100%">
-          <thead>
-          <tr>
-            <th>Undo</th>
-            <th>Length</th>
-            <th>Price</th>
-          </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-        <div>Current Solution Profit: $<span id="currentSolutionProfit" value="0.00">0.00</span></div>
-      </div>
-      <?php include './php/generateSolution.php' ?>
-
+    <div class="col-lg col-md table-responsive">
+      <h1 class="h2">Your Solution</h1>
+      <div>Current Solution Profit: $<span id="currentSolutionProfit" value="0.00">0.00</span></div>
+      <table id="currentSolutionTable" class="table table-striped table-bordered table-sm" cellspacing="0"
+             width="100%">
+        <thead>
+        <tr>
+          <th>Undo</th>
+          <th>Length</th>
+          <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     </div>
-    <div class="col-sm col-lg-4 table-responsive">
+    <div class="col-lg col-md table-responsive">
+      <h1 class="h2">Calculated Solution</h1>
+      <div>
+
+        <button onclick="toggleSolution(this)" class="btn btn-secondary" type="button">Show Solution</button>
+
+      </div>
+      <table hidden="true" id="solutionTable" class="table table-striped table-bordered table-sm" cellspacing="0"
+             width="100%">
+        <thead>
+        <tr>
+          <th>Length</th>
+          <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php include './php/generateSolution.php' ?>
+        </tbody>
+      </table>
+      <?php
+      //show max value
+      echo "<div hidden='true' id='solutionPrice'>The Max Profit that can be reached is: $<span id='solutionTotalProfit'>".number_format($valueArray[count($marketArray)], 2,'.', ',')."</span></div>";
+      ?>
+    </div>
+    <div class="col col-lg-4 table-responsive">
       <h2>Current Market</h2>
       <table id="priceTable" class="table table-striped table-bordered table-sm" cellspacing="0"
              width="100%">

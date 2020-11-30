@@ -1,14 +1,9 @@
 <?php
-//Print start of table
-echo '<table hidden="true" id="solutionTable" class="table table-striped table-bordered table-sm" cellspacing="0"
-             width="100%">
-        <thead>
-        <tr>
-          <th>Length</th>
-          <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>';
+//    Jackson Hoenig
+//    Final Project 5130
+//    Rod Cutting Problem Solution Game
+//    Pipe Cutter
+//    11/30/2020
 
 //  Min and Max are going to be set to a penny to a dollar increase.
 // this is added to the previous value so that it is always better to sell a bigger pipe but it depends on how much better.
@@ -28,12 +23,6 @@ while($n > 0){
   $n = $n - $cuts[$n];
 }
 
-//Finish table:
-echo '</tbody>
-      </table>';
-
-//show max value
-echo "<div hidden='true' id='solutionPrice'>The Max Profit that can be reached is:$".number_format($valueArray[count($marketArray)], 2,'.', ',').".</div>";
 
 
 ?>
