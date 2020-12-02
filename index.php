@@ -46,13 +46,13 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li class="nav-item <?php if($difficulty == 'Easy'){echo 'active';} ?>">
         <a class="nav-link" href="index.php?difficulty=Easy">Easy</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <?php if($difficulty == 'Medium'){echo 'active';} ?>">
         <a class="nav-link" href="index.php?difficulty=Medium">Medium</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <?php if($difficulty == 'Hard'){echo 'active';} ?>">
         <a class="nav-link" href="index.php?difficulty=Hard">Hard</a>
       </li>
     </ul>
@@ -85,7 +85,7 @@
         <button onclick="toggleSolution(this)" class="btn btn-secondary" type="button">Show Solution</button>
 
       </div>
-      <table hidden="true" id="solutionTable" class="table table-striped table-bordered table-sm" cellspacing="0"
+      <table id="solutionTable" class="table table-striped table-bordered table-sm" cellspacing="0"
              width="100%">
         <thead>
         <tr>
@@ -100,7 +100,7 @@
       </table>
       <?php
       //show max value
-      echo "<div hidden='true' id='solutionPrice'>The Max Profit that can be reached is: $<span id='solutionTotalProfit'>".number_format($valueArray[count($marketArray)], 2,'.', ',')."</span></div>";
+      echo "<div id='solutionPrice'>The Max Profit that can be reached is: $<span id='solutionTotalProfit'>".number_format($valueArray[count($marketArray)], 2,'.', ',')."</span></div>";
       ?>
     </div>
     <div class="col col-lg-4 table-responsive">
@@ -120,11 +120,17 @@
       </table>
     </div>
   </div>
-
-  <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
 </div>
 
+<!--footer for copyright-->
+<footer>
+<!-- Copyright -->
+<div class="footer-copyright text-center py-5"> Jackson Hoenig: 12/1/2020
+</div>
+<!-- Copyright -->
 
+</footer>
+<!-- Footer -->
 <!-- Bootstrap core JavaScript
   ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

@@ -9,14 +9,18 @@ $(document).ready(function () {
     "scrollCollapse": true,
   });
   $('#solutionTable').DataTable({searching: false, paging: false, info: false,
-    "scrollY": "300px",
+    "scrollY": "450px",
     "scrollCollapse": true,
   });
   $('#currentSolutionTable').DataTable({searching: false, paging: false, info: false,
-    "scrollY": "300px",
+    "scrollY": "500px",
     "scrollCollapse": true,
   });
   $('.dataTables_length').addClass('bs-select');
+
+  //hide solution
+  $('#solutionTable').attr("hidden", true);
+  $('#solutionPrice').attr("hidden", true);
 });
 
 function toggleSolution(btn){
@@ -28,10 +32,14 @@ function toggleSolution(btn){
   else{
     btn.innerHTML = "Show Solution";
   }
-
 }
 
 function  cutSelected(length){
+  //remove the no data in table row
+  var x = document.getElementsByClassName("dataTables_empty");
+  for (i = 0; i < x.length; i++) {
+    x[i].hidden = true;
+  }
   //add cut to current profit
   var value = document.getElementById('marketRow' + length).cells[2].innerHTML;
   value = value.substring(1);
@@ -77,7 +85,13 @@ function undoButtonPressed(btn, price, length){
   //subtract cut from current profit
   var value2 = document.getElementById('currentSolutionProfit').innerHTML;
   document.getElementById('currentSolutionProfit').innerHTML = (parseFloat(value2) - parseFloat(price)).toFixed(2);
-
+  if(value2 - price === 0.0){
+    //add the no data in table row
+    var x = document.getElementsByClassName("dataTables_empty");
+    for (i = 0; i < x.length; i++) {
+      x[i].hidden = false;
+    }
+  }
   //remove cut from current solution table
   var row = btn.parentNode.parentNode;
   row.parentNode.removeChild(row);
